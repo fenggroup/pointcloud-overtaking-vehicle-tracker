@@ -4,13 +4,34 @@ This repository contains a modular Python pipeline for analyzing bicycle–vehic
 
 The algorithm detects vehicles, tracks them across frames, estimates bicycle and vehicle speeds, summarizes passing events, and computes surrogate safety metrics.
 
+## Data Access (Required)
+
+This repository uses a **Git submodule** to manage the LiDAR dataset required to run the pipeline.
+
+### Clone with data (recommended)
+```bash
+git clone --recurse-submodules https://github.com/fenggroup/overtaking-vehicle-tracking-lidar.git
+```
+### If you already cloned without data
+```bash
+git submodule update --init --recursive
+```
+### Expected data location
+
+After initialization, the dataset will be available at:
+
+```bash
+data/pointclouds/frame-XXXXXX.pcd
+```
+**The pipeline will not run correctly unless the data submodule is initialized.**
+
 
 
 ## Project Structure
 
 ```text
 project_root/
-├── data/
+├── data/           #Git submodule (dataset repository)
 │   └── pointclouds/
 │       └── frame-XXXXXX.pcd
 │
@@ -309,7 +330,14 @@ Segments ground points from point cloud frames using a custom RANSAC-based metho
 
 
 ## How to run
-1. ### Set up a virtual environment
+
+> **Note:** Ensure the data submodule is initialized before running the pipeline (see *Data Access* above).
+1. ### Clone this repository
+```
+git clone --recurse-submodules https://github.com/fenggroup/overtaking-vehicle-tracking-lidar.git
+cd overtaking-vehicle-tracking-lidar
+```
+2. ### Set up a virtual environment
 ```
 python -m venv venv
 
@@ -320,12 +348,12 @@ python -m venv venv
 source venv/bin/activate
 ```
 
-2. ### Install dependencies
+3. ### Install dependencies
 ```
 python -m pip install -r requirements.txt
 ```
 
-3. ### Run the full code
+4. ### Run the full code
 ```
 python -m src.main
 ```
