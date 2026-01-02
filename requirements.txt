@@ -1,0 +1,19 @@
+# Core numerical stack
+numpy<2.0
+scipy
+
+# Point cloud & geometry
+open3d
+pypcd4
+
+# Machine learning / clustering
+scikit-learn
+
+# Data handling
+pandas
+
+# Plotting (optional but commonly used)
+matplotlib
+
+# Utilities
+tqdm
