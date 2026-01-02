@@ -21,8 +21,9 @@ outputs/
 results/
 plots/
 
-# --- local data (kept in separate repo) ---
-data/
+# --- local data (data handled as git submodule) ---
+/data/*
+!/data/.git
 
 # macOS AppleDouble (external drives)
 ._*
