@@ -1,3 +1,3 @@
 [submodule "data"]
 	path = data
-	url = git@github.com:fenggroup/overtaking-vehicle-tracking-lidar-data-sample.git
+	url = https://github.com/fenggroup/overtaking-vehicle-tracking-lidar-data-sample.git
