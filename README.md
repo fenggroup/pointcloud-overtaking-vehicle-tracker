@@ -72,6 +72,12 @@ Key dependencies include:
 
 - **scikit-learn**
 
+- **pypcd4**
+
+- **pandas**
+
+- **scipy**
+
 ## Project Structure
 
 ```text
@@ -374,8 +380,3 @@ All steps are orchestrated through a single entry point:
 
 
 
-- **pypcd4**
-
-- **pandas**
-
-- **scipy**
