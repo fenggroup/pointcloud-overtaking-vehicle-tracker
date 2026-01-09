@@ -184,7 +184,7 @@ All steps are orchestrated through a single entry point:
 ### 3. Ground segmentation/filtering
 `ground_segmentation.py`
 
-- Segments ground points from point cloud frames using a custom RANSAC-based method.
+- Segments ground points from point cloud frames using a custom bin-based method.
 - Improves detection quality by isolating objects from road surface.
 - Makes clustering faster and more accurate.
   
