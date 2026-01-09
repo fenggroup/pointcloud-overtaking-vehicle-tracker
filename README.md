@@ -4,28 +4,73 @@ This repository contains a modular Python pipeline for analyzing bicycle–vehic
 
 The algorithm detects vehicles, tracks them across frames, estimates bicycle and vehicle speeds, summarizes passing events, and computes surrogate safety metrics.
 
+## How to run
+
+> **Note:** Ensure the data submodule is initialized before running the pipeline (see *Data Access* below).
+
 ## Data Access (Required)
 
 This repository uses a **Git submodule** to manage the LiDAR dataset required to run the pipeline.
 
-### Clone with data (recommended)
-```bash
-git clone --recurse-submodules https://github.com/fenggroup/overtaking-vehicle-tracking-lidar.git
-```
-### If you already cloned without data
-```bash
-git submodule update --init --recursive
-```
-### Expected data location
+1. ### Clone this repository
 
-After initialization, the dataset will be available at:
-
-```bash
-data/pointclouds/frame-XXXXXX.pcd
-```
+- ## Clone with data (recommended)
+    ```bash
+    git clone --recurse-submodules https://github.com/fenggroup/pointcloud-overtaking-vehicle-tracker.git
+    cd pointcloud-overtaking-vehicle-tracker
+    ```
+- ## If you already cloned without data
+    ```bash
+    git submodule update --init --recursive
+    ```
+- ## Expected data location
+    
+    After initialization, the dataset will be available at:
+    
+    ```bash
+    data/pointclouds/frame-XXXXXX.pcd
+    ```
 **The pipeline will not run correctly unless the data submodule is initialized.**
 
 
+
+2. ### Set up a virtual environment
+```
+python -m venv venv
+
+# Windows
+.\venv\Scripts\activate
+
+# macOS / Linux
+source venv/bin/activate
+```
+
+3. ### Install dependencies
+```
+python -m pip install -r requirements.txt
+```
+
+4. ### Run the full code
+```
+python -m src.main
+```
+
+**You will be prompted whether to recompute bike speeds if they already exist. If already computed and the file already exists no need to run it again so you can simply reply by 'N'.**
+
+
+### Dependencies
+
+See ```requirements.txt```.
+
+This code was tested with Python 3.10-3.12.
+
+Key dependencies include:
+
+- **numpy < 2.0**
+
+- **open3d**
+
+- **scikit-learn**
 
 ## Project Structure
 
@@ -117,11 +162,13 @@ All steps are orchestrated through a single entry point:
 
 Handles reading point cloud frames from .pcd files using Open3D.
 
+<!-- 
 - **Functions**:
 
     - load_o3d_from_pcd(path): Loads a point cloud from the given PCD file path using Open3D.
 
-    - convert_to_numpy(pcd): Converts an Open3D point cloud into a NumPy N×3 array of (x, y, z) points.
+    - convert_to_numpy(pcd): Converts an Open3D point cloud into a NumPy N×3 array of (x, y, z) points. 
+
 
 - **Used in**:
 
@@ -132,12 +179,16 @@ Handles reading point cloud frames from .pcd files using Open3D.
     - Centralizes PCD file reading logic.
 
     - Enables interoperability between Open3D and NumPy.
+ -->
  
 ### 3. Ground segmentation/filtering
 `ground_segmentation.py`
 
-Segments ground points from point cloud frames using a custom RANSAC-based method.
-
+- Segments ground points from point cloud frames using a custom RANSAC-based method.
+- Improves detection quality by isolating objects from road surface.
+- Makes clustering faster and more accurate.
+  
+<!--
 - **Functions**:
 
     - segment_ground(points, dist_thresh, angle_thresh, max_attempts):
@@ -147,12 +198,10 @@ Segments ground points from point cloud frames using a custom RANSAC-based metho
 - **Used in**:
 
     - vehicle_tracking.py to remove ground-level noise before DBSCAN clustering.
+-->
 
-- **Purpose**:
 
-    - Improves detection quality by isolating objects from road surface.
 
-    - Makes clustering faster and more accurate.
  
 
 ### 4. Speed Estimation
@@ -164,9 +213,9 @@ Segments ground points from point cloud frames using a custom RANSAC-based metho
 
 - Performs outlier removal, interpolation, and Savitzky–Golay smoothing
 
+
 **Output**:
 - `outputs/bike-speed-icp.csv`
-
 
 
 
@@ -329,51 +378,7 @@ Segments ground points from point cloud frames using a custom RANSAC-based metho
 
 
 
-## How to run
 
-> **Note:** Ensure the data submodule is initialized before running the pipeline (see *Data Access* above).
-1. ### Clone this repository
-```
-git clone --recurse-submodules https://github.com/fenggroup/overtaking-vehicle-tracking-lidar.git
-cd overtaking-vehicle-tracking-lidar
-```
-2. ### Set up a virtual environment
-```
-python -m venv venv
-
-# Windows
-.\venv\Scripts\activate
-
-# macOS / Linux
-source venv/bin/activate
-```
-
-3. ### Install dependencies
-```
-python -m pip install -r requirements.txt
-```
-
-4. ### Run the full code
-```
-python -m src.main
-```
-
-**You will be prompted whether to recompute bike speeds if they already exist. If already computed and the file already exists no need to run it again so you can simply reply by 'N'.**
-
-
-### Dependencies
-
-See ```requirements.txt```.
-
-This code was tested with Python 3.10-3.12.
-
-Key dependencies include:
-
-- **numpy < 2.0**
-
-- **open3d**
-
-- **scikit-learn**
 
 - **pypcd4**
 
