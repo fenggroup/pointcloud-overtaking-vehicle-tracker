@@ -256,8 +256,6 @@ All steps are orchestrated through a single entry point:
 
 - Orchestrates detection, tracking, and box fitting
 
-- Displays a progress bar only
-
 - Outputs per-frame vehicle tracking data
 
 
@@ -277,8 +275,6 @@ All steps are orchestrated through a single entry point:
 
 - Applies temporal smoothing to speed profiles
 
-- Operates only on passing vehicles
-
 **Output**:
 
 - `results/vehicle_speeds_frames.csv`
@@ -297,8 +293,6 @@ All steps are orchestrated through a single entry point:
 **Output:**
 
 `outputs/vehicle-tracking-frames-smoothed.csv`
-
-
 
 
 
