@@ -62,7 +62,7 @@ python -m src.main
 
 See ```requirements.txt```.
 
-This code was tested with Python 3.10-3.12.
+This code was tested with **Python 3.10-3.12**.
 
 Key dependencies include:
 
