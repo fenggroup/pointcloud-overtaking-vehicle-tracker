@@ -14,16 +14,16 @@ This repository uses a **Git submodule** to manage the LiDAR dataset required to
 
 1. ### Clone this repository
 
-- ## Clone with data (recommended)
+- #### Clone with data (recommended)
     ```bash
     git clone --recurse-submodules https://github.com/fenggroup/pointcloud-overtaking-vehicle-tracker.git
     cd pointcloud-overtaking-vehicle-tracker
     ```
-- ## If you already cloned without data
+- #### If you already cloned without data
     ```bash
     git submodule update --init --recursive
     ```
-- ## Expected data location
+- #### Expected data location
     
     After initialization, the dataset will be available at:
     
