@@ -8,7 +8,7 @@ The algorithm detects vehicles, tracks them across frames, estimates bicycle and
 
 > **Note:** Ensure the data submodule is initialized before running the pipeline (see *Data Access* below).
 
-## Data Access (Required)
+### Data Access (Required)
 
 This repository uses a **Git submodule** to manage the LiDAR dataset required to run the pipeline.
 
