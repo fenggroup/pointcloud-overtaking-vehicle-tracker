@@ -160,7 +160,7 @@ All steps are orchestrated through a single entry point:
 ### 2. Point cloud I/O
 `pcd_io.py`
 
-Handles reading point cloud frames from .pcd files using Open3D.
+- Handles reading point cloud frames from .pcd files using Open3D.
 
 <!-- 
 - **Functions**:
